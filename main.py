@@ -32,6 +32,9 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    shots.add(player.shoot())
 
         updatable.update(dt)
 
