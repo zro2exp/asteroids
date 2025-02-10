@@ -38,17 +38,18 @@ def main():
 
         updatable.update(dt)
 
+        for shot in shots:
+            shot.update(dt)
+
         for asteroid in asteroids:
             if asteroid.collides_with(player):
                 print("Game Over!")
                 sys.exit()
+            for shot in shots:
+                if asteroid.collides_with(shot):
+                    shot.kill()
+                    asteroid.kill()
 
-        for shot in shots:
-            if asteroid.collides_with(shot):
-                shot.kill()
-                asteroid.kill()
-            shot.update(dt)
-        
         screen.fill("black")
         
         for obj in drawable:
